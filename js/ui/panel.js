@@ -1435,7 +1435,7 @@ TextShadower.prototype = {
         alloc.natural_size = natHeight + 2;
     },
 
-    _allocate: function(actor, box, flags) {
+    _allocate: function(actor, box) {
         let children = this.actor.get_children();
 
         let availWidth = box.x2 - box.x1;
@@ -1477,7 +1477,7 @@ TextShadower.prototype = {
             }
             childBox.x2 = childBox.x1 + childWidth;
             childBox.y2 = childBox.y1 + childHeight;
-            child.allocate(childBox, flags);
+            child.allocate(childBox);
         }
     }
 };
@@ -3551,7 +3551,7 @@ Panel.prototype = {
         return;
     },
 
-    _allocate: function(actor, box, flags) {
+    _allocate: function(actor, box) {
 
         let cornerMinWidth = 0;
         let cornerWidth = 0;
@@ -3584,13 +3584,13 @@ Panel.prototype = {
             rightBoundary += box.y1;
 
             this._setVertChildbox (childBox, box.y1, leftBoundary);
-            this._leftBox.allocate(childBox, flags);
+            this._leftBox.allocate(childBox);
 
             this._setVertChildbox (childBox, leftBoundary, rightBoundary);
-            this._centerBox.allocate(childBox, flags);
+            this._centerBox.allocate(childBox);
 
             this._setVertChildbox (childBox, rightBoundary, box.y2);
-            this._rightBox.allocate(childBox, flags);
+            this._rightBox.allocate(childBox);
 
             // Corners are in response to a bit of optional css and are about painting corners just outside the panels so as to create a seamless
             // visual impression for windows with curved corners
@@ -3609,7 +3609,7 @@ Panel.prototype = {
                 } else { // right panel
                     this._setCornerChildbox(childBox, box.x1-cornerWidth, box.x1, 0, cornerWidth);
                 }
-                this._leftCorner.actor.allocate(childBox, flags);
+                this._leftCorner.actor.allocate(childBox);
             }
 
             if (this.drawcorner[1]) {
@@ -3620,7 +3620,7 @@ Panel.prototype = {
                 } else { // right panel
                     this._setCornerChildbox(childBox, box.x1-cornerWidth, box.x1, this.actor.height-cornerHeight, this.actor.height);
                 }
-                this._rightCorner.actor.allocate(childBox, flags);
+                this._rightCorner.actor.allocate(childBox);
             }
 
         } else {           // horizontal panel
@@ -3632,13 +3632,13 @@ Panel.prototype = {
             rightBoundary += box.x1;
 
             this._setHorizChildbox (childBox, box.x1, leftBoundary, leftBoundary, box.x2);
-            this._leftBox.allocate(childBox, flags);
+            this._leftBox.allocate(childBox);
 
             this._setHorizChildbox (childBox, leftBoundary, rightBoundary, rightBoundary, leftBoundary);
-            this._centerBox.allocate(childBox, flags);
+            this._centerBox.allocate(childBox;
 
             this._setHorizChildbox (childBox, rightBoundary, box.x2, box.x1, rightBoundary);
-            this._rightBox.allocate(childBox, flags);
+            this._rightBox.allocate(childBox);
 
             if (this.drawcorner[0]) {
                 [cornerMinWidth, cornerWidth]   = this._leftCorner.actor.get_preferred_width(-1);
@@ -3648,7 +3648,7 @@ Panel.prototype = {
                 } else { // bottom panel
                     this._setCornerChildbox(childBox, 0, cornerWidth, box.y1-cornerHeight, box.y2);
                 }
-                this._leftCorner.actor.allocate(childBox, flags);
+                this._leftCorner.actor.allocate(childBox);
             }
 
             if (this.drawcorner[1]) {
@@ -3659,7 +3659,7 @@ Panel.prototype = {
                 } else { // bottom panel
                   this._setCornerChildbox(childBox, this.actor.width-cornerWidth, this.actor.width, box.y1-cornerHeight, box.y1);
                 }
-                this._rightCorner.actor.allocate(childBox, flags);
+                this._rightCorner.actor.allocate(childBox);
             }
         }
     },

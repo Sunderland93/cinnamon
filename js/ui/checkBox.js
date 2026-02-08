@@ -64,7 +64,7 @@ var CheckBoxContainer = class {
         alloc.natural_size = Math.max(natBoxHeight, natLabelHeight);
     }
 
-    _allocate(actor, box, flags) {
+    _allocate(actor, box) {
         let availWidth = box.x2 - box.x1;
         let availHeight = box.y2 - box.y1;
 
@@ -78,7 +78,7 @@ var CheckBoxContainer = class {
         if (availHeight > natBoxHeight) childBox.y1 = box.y1 + (availHeight-natBoxHeight)/2;
         else childBox.y1 = box.y1;
         childBox.y2 = childBox.y1 + natBoxHeight;
-        this._box.allocate(childBox, flags);
+        this._box.allocate(childBox);
 
         let [minLabelWidth, natLabelWidth] =
             this.label.get_preferred_width(-1);
@@ -89,7 +89,7 @@ var CheckBoxContainer = class {
         if (availHeight > natLabelHeight) childBox.y1 = box.y1 + (availHeight-natLabelHeight)/2;
         else childBox.y1 = box.y1;
         childBox.y2 = childBox.y1 + natLabelHeight;
-        this.label.allocate(childBox, flags);
+        this.label.allocate(childBox);
     }
 }
 

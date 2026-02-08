@@ -53,7 +53,7 @@ RadioButtonContainer.prototype = {
         alloc.natural_size = Math.max(natBoxHeight, 2 * natLabelHeight);
     },
 
-    _allocate: function(actor, box, flags) {
+    _allocate: function(actor, box) {
         let availWidth = box.x2 - box.x1;
         let availHeight = box.y2 - box.y1;
 
@@ -66,13 +66,13 @@ RadioButtonContainer.prototype = {
         childBox.x2 = box.x1 + natBoxWidth;
         childBox.y1 = box.y1;
         childBox.y2 = box.y1 + natBoxHeight;
-        this._box.allocate(childBox, flags);
+        this._box.allocate(childBox);
 
         childBox.x1 = box.x1 + natBoxWidth + this._spacing;
         childBox.x2 = availWidth - childBox.x1;
         childBox.y1 = box.y1;
         childBox.y2 = box.y2;
-        this.label.allocate(childBox, flags);
+        this.label.allocate(childBox);
     }
 };
 

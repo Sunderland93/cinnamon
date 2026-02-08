@@ -251,7 +251,7 @@ var SubscriptableFlagIcon = GObject.registerClass({
 
         this.add_child(this._drawingArea);
 
-        this.connect("allocation-changed", () => {
+        this.connect("notify::allocation", () => {
             GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
                 this._load_file();
             });

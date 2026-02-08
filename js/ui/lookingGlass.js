@@ -332,7 +332,7 @@ class Inspector {
         }
     }
 
-    _allocate(actor, box, flags) {
+    _allocate(actor, box) {
         if (!this._eventHandler)
             return;
 
@@ -346,7 +346,7 @@ class Inspector {
         childBox.x2 = childBox.x1 + natWidth;
         childBox.y1 = primary.y + Math.floor((primary.height - natHeight) / 2);
         childBox.y2 = childBox.y1 + natHeight;
-        this._eventHandler.allocate(childBox, flags);
+        this._eventHandler.allocate(childBox);
     }
 
     _close() {
